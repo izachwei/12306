@@ -17,7 +17,7 @@
 ### 代码执行
 1. 修改配置文件中对应的参数：
 [startup.properties](src%2Fmain%2Fresources%2Fdata%2F12306%2Fstartup.properties)
-![img.png](img.png)
+![img.png](img/img.png)
 2. 执行测试用例
 [Ticket12306Test.java](src%2Ftest%2Fjava%2Fcom%2Fzach%2Ftest%2FTicket12306Test.java)
 

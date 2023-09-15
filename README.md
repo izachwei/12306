@@ -1,6 +1,16 @@
 # 12306
 
-12306 抢票程序
+
+
+<p align="center">
+	<strong>12306 抢票程序</strong>
+</p>
+
+<p align="center">
+    <a>
+        <img src="https://img.shields.io/badge/JDK-17+-green.svg" >
+    </a>
+</p>
 
 10-1国庆放假没抢到票，写一个抢票脚本。
 人肉去抢实在抢不过啊。。。

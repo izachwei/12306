@@ -12,8 +12,7 @@
     </a>
 </p>
 
-10-1国庆放假没抢到票，写一个抢票脚本。
-人肉去抢实在抢不过啊。。。
+> 10.1 国庆放假没抢到票，写了一个抢票脚本，人肉去抢实在抢不过啊。。。
 
 ## 快速开始
 
@@ -21,8 +20,7 @@
 
 * JDK 17
 
-
-项目本身引用 [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) **自动下载管理 WebDriver**。
+> 项目本身引用 [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) **自动下载管理 WebDriver**。
 
 ### 代码执行
 1. 修改配置文件中对应的参数：
@@ -35,6 +33,6 @@
 ...
 
 ## 注意
-**执行过程，需要打开 12306 软件进行扫码登录**
+**执行过程，需要在手机端打开 12306 软件进行扫码登录**
 
 

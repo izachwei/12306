@@ -1,6 +1,8 @@
 package com.zach.page.ticket12306;
 
 import com.zach.driver.DriverManager;
+import com.zach.exceptions.PageErrorException;
+import com.zach.model.TicketContext;
 import com.zach.model.TicketInfo;
 import com.zach.page.AbstractPageObject;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,12 +10,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import javax.security.auth.login.LoginContext;
 import java.util.Set;
 
 /**
  * @author : zw35
  */
-public class HomePage extends AbstractPageObject {
+public class HomePage extends TicketPageObject {
 
     @FindBy(id = "J-btn-login")
     public WebElement loginElement;
@@ -39,16 +42,17 @@ public class HomePage extends AbstractPageObject {
     public void go() {
         this.webDriverWaitUntil(ExpectedConditions.elementToBeClickable(home));
         home.click();
+        this.check();
     }
 
     public void search(TicketInfo ticket) {
         String currentWindow = getDriver().getWindowHandle();
 
         this.webDriverWaitUntil(ExpectedConditions.elementToBeClickable(search));
-        JavascriptExecutor driver = (JavascriptExecutor)getDriver();
-        driver.executeScript("arguments[0].value=arguments[1]",fromStation,ticket.getFrom());
-        driver.executeScript("arguments[0].value=arguments[1]",toStation,ticket.getTo());
-        driver.executeScript("arguments[0].value=arguments[1]",trainDate,ticket.getDate());
+        JavascriptExecutor driver = (JavascriptExecutor) getDriver();
+        driver.executeScript("arguments[0].value=arguments[1]", fromStation, ticket.getFrom());
+        driver.executeScript("arguments[0].value=arguments[1]", toStation, ticket.getTo());
+        driver.executeScript("arguments[0].value=arguments[1]", trainDate, ticket.getDate());
         search.click();
         Set<String> windowHandles = DriverManager.getDriver().getWindowHandles();
         String nextWindow = "";
@@ -58,6 +62,8 @@ public class HomePage extends AbstractPageObject {
             }
         }
         getDriver().switchTo().window(nextWindow);
+
+        this.check();
     }
 
 }

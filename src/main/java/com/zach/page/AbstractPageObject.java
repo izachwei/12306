@@ -28,6 +28,8 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
 import com.zach.driver.DriverManager;
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -49,7 +51,7 @@ public class AbstractPageObject {
     private WebDriverWait getWebDriveWait() {
         if (webDriverWait == null) {
             webDriverWait = new WebDriverWait(DriverManager.getDriver()
-                , Duration.of(200, ChronoUnit.SECONDS));
+                    , Duration.of(200, ChronoUnit.SECONDS));
         }
         return webDriverWait;
     }
@@ -59,12 +61,21 @@ public class AbstractPageObject {
         try {
             getWebDriveWait().until(expectedCondition);
         } catch (TimeoutException var4) {
-            ((JavascriptExecutor)driver).executeScript("window.stop();", new Object[0]);
+            ((JavascriptExecutor) driver).executeScript("window.stop();", new Object[0]);
         }
     }
 
-    public WebDriver getDriver(){
-       return DriverManager.getDriver();
+    public WebDriver getDriver() {
+        return DriverManager.getDriver();
+    }
+
+    public boolean isExist(By by) {
+        try {
+            getDriver().findElement(by);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

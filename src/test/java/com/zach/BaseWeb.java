@@ -65,8 +65,20 @@ public abstract class BaseWeb {
     public void preCondition(@Optional("chrome") String browser) {
         WebDriver driver = new TargetFactory().createInstance(browser);
         DriverManager.setDriver(driver);
-        DriverManager.getDriver().get(configuration().url());
+        initPage();
         waitPageLoaded();
+    }
+
+    public static void initPage() {
+        DriverManager.getDriver().get(configuration().url());
+        String current = DriverManager.getDriver().getWindowHandle();
+        for (String windowHandle : DriverManager.getDriver().getWindowHandles()) {
+            if(!current.equals(windowHandle)) {
+                DriverManager.getDriver().switchTo().window(windowHandle);
+                DriverManager.getDriver().close();
+            }
+        }
+        DriverManager.getDriver().switchTo().window(current);
     }
 
     private WebDriverWait getWebDriveWait() {

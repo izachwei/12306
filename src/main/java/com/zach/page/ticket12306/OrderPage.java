@@ -2,7 +2,9 @@ package com.zach.page.ticket12306;
 
 import com.zach.model.TicketInfo;
 import com.zach.page.AbstractPageObject;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrderPage extends AbstractPageObject {
+@Slf4j
+public class OrderPage extends TicketPageObject {
 
     @FindBy(xpath = "//*[@id=\"normal_passenger_id\"]/li")
     private List<WebElement> passengerElement;
@@ -30,9 +33,10 @@ public class OrderPage extends AbstractPageObject {
                 webElement.findElement(By.cssSelector("input")).click();
             }
         }
-        submit.click();
-        webDriverWaitUntil(ExpectedConditions.elementToBeClickable(confirm));
-        confirm.click();
+//        submit.click();
+//        webDriverWaitUntil(ExpectedConditions.elementToBeClickable(confirm));
+//        confirm.click();
     }
+
 
 }

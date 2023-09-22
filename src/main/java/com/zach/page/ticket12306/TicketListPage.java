@@ -76,6 +76,9 @@ public class TicketListPage extends TicketPageObject {
                     }
                 }
             }
+            if (StringUtils.isNoneEmpty(seatType)) {
+               break;
+            }
         }
         if (StringUtils.isEmpty(seatType)) {
             throw new RuntimeException("无余票");

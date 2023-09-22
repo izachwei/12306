@@ -53,7 +53,7 @@ public enum BrowserFactory {
     CHROME {
         @Override
         public WebDriver createLocalDriver() {
-            WebDriverManager.chromedriver().setup();
+            WebDriverManager.chromedriver().browserVersion(configuration().browserVersion()).setup();
 
             return new ChromeDriver(getOptions());
         }
@@ -79,10 +79,11 @@ public enum BrowserFactory {
             log.info("chrome option:", chromeOptions.toJson());
             return chromeOptions;
         }
-    }, FIREFOX {
+    },
+    FIREFOX {
         @Override
         public WebDriver createLocalDriver() {
-            WebDriverManager.firefoxdriver().setup();
+            WebDriverManager.firefoxdriver().browserVersion(configuration().browserVersion()).setup();
 
             return new FirefoxDriver(getOptions());
         }
@@ -92,14 +93,15 @@ public enum BrowserFactory {
             var firefoxOptions = new FirefoxOptions();
             firefoxOptions.addArguments(START_MAXIMIZED);
 
-            if (configuration().headless()) firefoxOptions.addArguments(GENERIC_HEADLESS);
+            if (configuration().headless()) {firefoxOptions.addArguments(GENERIC_HEADLESS);}
 
             return firefoxOptions;
         }
-    }, EDGE {
+    },
+    EDGE {
         @Override
         public WebDriver createLocalDriver() {
-            WebDriverManager.edgedriver().setup();
+            WebDriverManager.edgedriver().browserVersion(configuration().browserVersion()).setup();
 
             return new EdgeDriver(getOptions());
         }
@@ -109,14 +111,15 @@ public enum BrowserFactory {
             var edgeOptions = new EdgeOptions();
             edgeOptions.addArguments(START_MAXIMIZED);
 
-            if (configuration().headless()) edgeOptions.addArguments(GENERIC_HEADLESS);
+            if (configuration().headless()) {edgeOptions.addArguments(GENERIC_HEADLESS);}
 
             return edgeOptions;
         }
-    }, SAFARI {
+    },
+    SAFARI {
         @Override
         public WebDriver createLocalDriver() {
-            WebDriverManager.safaridriver().setup();
+            WebDriverManager.safaridriver().browserVersion(configuration().browserVersion()).setup();
 
             return new SafariDriver(getOptions());
         }
@@ -126,8 +129,9 @@ public enum BrowserFactory {
             var safariOptions = new SafariOptions();
             safariOptions.setAutomaticInspection(false);
 
-            if (TRUE.equals(configuration().headless()))
+            if (TRUE.equals(configuration().headless())) {
                 throw new HeadlessNotSupportedException(safariOptions.getBrowserName());
+            }
 
             return safariOptions;
         }

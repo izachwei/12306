@@ -33,9 +33,9 @@ public class OrderPage extends TicketPageObject {
                 webElement.findElement(By.cssSelector("input")).click();
             }
         }
-//        submit.click();
-//        webDriverWaitUntil(ExpectedConditions.elementToBeClickable(confirm));
-//        confirm.click();
+        submit.click();
+        webDriverWaitUntil(ExpectedConditions.elementToBeClickable(confirm));
+        confirm.click();
     }
 
 

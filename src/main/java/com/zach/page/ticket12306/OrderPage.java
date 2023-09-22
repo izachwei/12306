@@ -1,5 +1,6 @@
 package com.zach.page.ticket12306;
 
+import com.zach.exceptions.OrderException;
 import com.zach.model.TicketInfo;
 import com.zach.page.AbstractPageObject;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class OrderPage extends TicketPageObject {
     @FindBy(xpath = "//*[@id=\"qr_submit_id\"]")
     private WebElement confirm;
 
+    @FindBy(xpath = "")
+    private WebElement alert;
+
 
     public void createOrder(TicketInfo ticketInfo) {
         List<String> passenger = Arrays.stream(ticketInfo.getPassenger()).toList();
@@ -34,6 +38,19 @@ public class OrderPage extends TicketPageObject {
             }
         }
         submit.click();
+        if (isExist(By.xpath("//*[@id=\"defaultwarningAlert_id\"]"))) {
+            String msg = getDriver().findElement(By.xpath("//*[@id=\"defaultwarningAlert_id\"]")).getText();
+            log.error("订单创建失败，失败原因：{}", msg);
+            if (msg.contains("乘车")) {
+                log.error("乘客：{} 在当前登录12306账号中不存在", Arrays.toString(ticketInfo.getPassenger()));
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                throw new OrderException("订单创建失败，失败原因：" + msg);
+            }
+        }
         webDriverWaitUntil(ExpectedConditions.elementToBeClickable(confirm));
         confirm.click();
     }

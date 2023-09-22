@@ -45,13 +45,11 @@ public class TrainUtil {
         seatType = parseSeatTypeStr(ticketConfiguration.seatType());
     }
 
-
     private static Map<String, String> parseSeatTypeStr(String seatStr) {
         Json json = new Json();
         LinkedHashMap map = json.toType(seatStr, Json.MAP_TYPE);
         return new HashMap<>(map);
     }
-
 
     private static void parseStationStr(String stationStr, Map<String, String> stationMap) {
         String[] split = stationStr.split("\\|\\|\\|@");
@@ -64,7 +62,6 @@ public class TrainUtil {
     private static String loadStationByApi(String s) {
         return "";
     }
-
 
     public static Map<String, Boolean> parseSeat(String seat) {
         String[] seatLevel = seat.split(" ");
@@ -92,31 +89,35 @@ public class TrainUtil {
         // 特等座 一等座	二等座/二等包座	高级软卧	软卧一等卧	动卧	硬卧二等卧	软座	硬座	无座	其他
         for (int i = 0; i < seatLevel.length; i++) {
             if (i == 0) {
-                res.put("P", StringUtils.equals("有", seatLevel[i]));
+                res.put("P", havaTicket(seatLevel[i]));
             } else if (i == 1) {
-                res.put("M", StringUtils.equals("有", seatLevel[i]));
+                res.put("M", havaTicket(seatLevel[i]));
             } else if (i == 2) {
-                res.put("O", StringUtils.equals("有", seatLevel[i]));
+                res.put("O", havaTicket(seatLevel[i]));
             } else if (i == 3) {
-                res.put("6", StringUtils.equals("有", seatLevel[i]));
+                res.put("6", havaTicket(seatLevel[i]));
             } else if (i == 4) {
-                res.put("I", StringUtils.equals("有", seatLevel[i]));
+                res.put("I", havaTicket(seatLevel[i]));
             } else if (i == 5) {
-                res.put("F", StringUtils.equals("有", seatLevel[i]));
+                res.put("F", havaTicket(seatLevel[i]));
             } else if (i == 6) {
-                res.put("3", StringUtils.equals("有", seatLevel[i]));
+                res.put("3", havaTicket(seatLevel[i]));
             } else if (i == 7) {
-                res.put("2", StringUtils.equals("有", seatLevel[i]));
+                res.put("2", havaTicket(seatLevel[i]));
             } else if (i == 8) {
-                res.put("1", StringUtils.equals("有", seatLevel[i]));
+                res.put("1", havaTicket(seatLevel[i]));
             } else if (i == 9) {
-                res.put("W", StringUtils.equals("有", seatLevel[i]));
+                res.put("W", havaTicket(seatLevel[i]));
             } else if (i == 10) {
-                res.put("H", StringUtils.equals("有", seatLevel[i]));
+                res.put("H", havaTicket(seatLevel[i]));
             }
         }
 
         return res;
+    }
+
+    private static boolean havaTicket(String seatLevel) {
+        return !StringUtils.equalsAny(seatLevel, "候补", "--");
     }
 
     public static String codeByCity(String code) {

@@ -42,6 +42,9 @@ public interface Configuration extends Config {
     @Key("browser")
     String browser();
 
+    @Key("browserVersion")
+    String browserVersion();
+
     @Key("headless")
     Boolean headless();
 

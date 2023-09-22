@@ -23,7 +23,6 @@ public class TicketListPage extends TicketPageObject {
     @FindAll({@FindBy(xpath = "//*[@id=\"queryLeftTable\"]/tr")})
     public List<WebElement> ticketList;
 
-
     public void predetermine(TicketInfo ticketData) throws InterruptedException {
         while (isNotTicket()) {
             log.info("当前无票，需要刷新页面");
@@ -46,14 +45,27 @@ public class TicketListPage extends TicketPageObject {
                 02:29
                 当日到达
                 -- 有 有 -- -- -- -- -- -- 有 -- 预订
-             */
 
+             */
+            /*
+            D8393
+            南宁东
+            贵港
+            09:02
+            09:47
+            00:45
+            当日到达
+            --
+            7
+            15
+            -- -- -- -- -- -- 有 -- 预订
+             */
             String text = webElement.getText();
             String[] split = text.split("\n");
             String trainNumber = split[0];
             String[] level = ticketData.getLevel();
             if (StringUtils.equals(ticketData.getTrainNumber(), trainNumber)) {
-                String seat = split[split.length - 1];
+                String seat = getSeatStr(text);
                 Map<String, Boolean> stringBooleanMap = TrainUtil.parseSeat(seat);
                 for (int i = 0; i < ticketData.getLevel().length; i++) {
                     if (stringBooleanMap.getOrDefault(level[i], false)) {
@@ -69,6 +81,11 @@ public class TicketListPage extends TicketPageObject {
             throw new RuntimeException("无余票");
         }
         this.check();
+    }
+
+    private String getSeatStr(String text) {
+        String[] split = text.split("到达");
+        return split[1].replace("\n", " ");
     }
 
     private boolean isNotSaleTime() {

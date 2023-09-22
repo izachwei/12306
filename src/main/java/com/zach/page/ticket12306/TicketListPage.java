@@ -72,7 +72,7 @@ public class TicketListPage extends TicketPageObject {
     }
 
     private boolean isNotSaleTime() {
-        return this.ticketList.get(0).getText().contains("售卖");
+        return this.ticketList.get(0).getText().contains("起售");
     }
 
     private boolean isNotTicket() {

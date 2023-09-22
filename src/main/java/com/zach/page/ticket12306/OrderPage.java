@@ -25,9 +25,6 @@ public class OrderPage extends TicketPageObject {
     @FindBy(xpath = "//*[@id=\"qr_submit_id\"]")
     private WebElement confirm;
 
-    @FindBy(xpath = "")
-    private WebElement alert;
-
 
     public void createOrder(TicketInfo ticketInfo) {
         List<String> passenger = Arrays.stream(ticketInfo.getPassenger()).toList();

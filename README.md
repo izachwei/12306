@@ -42,16 +42,16 @@
 
 1. [startup.properties](src%2Fmain%2Fresources%2Fdata%2F12306%2Fstartup.properties) **用于配置购票信息**
    ![img.png](img/startup.png)
-2. [general.properties](src%2Ftest%2Fresources%2Fgeneral.properties) 用于配置selenium driver
+2. [general.properties](src%2Ftest%2Fresources%2Fgeneral.properties) 用于配置 Selenium Driver
    ![img.png](img/drver-config.png)
 3. [12306.properties](src%2Fmain%2Fresources%2Fdata%2F12306%2F12306.properties) 12306基础配置信息
-4. [selenium-grid.properties](src%2Ftest%2Fresources%2Fselenium-grid.properties) 用于配置远程selenium-grid
+4. [selenium-grid.properties](src%2Ftest%2Fresources%2Fselenium-grid.properties) 用于配置远程 Selenium-grid
 5. [suites](src%2Ftest%2Fresources%2Fsuites) 用于工程化自动化测试
 
 ### 最后
 本项目只实现了一个简单的 12306 抢票，你也可以基于本项目完成更多自动化流程，例如：大麦网购票。
 <br/>同时本项目完全可以作为**企业/团队内 UI 自动化项目**来使用，可扩展性（local, selenium-grid or testcontainers）、可维护性（内部包结构、模块、实体类定义）。
-<br/>最后，如果该项目帮你买到了车票，给你带来了帮助，或者让你熟悉了 selenium 的常见用法，请给个**Star** ，谢谢。
+<br/>最后，如果该项目帮你买到了车票，给你带来了帮助，或者让你熟悉了 Selenium 的常见用法，请给个 **Star** ，谢谢。
 
 
 

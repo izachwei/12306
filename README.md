@@ -21,6 +21,13 @@
 
 > 项目自身引用 [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) **自动下载管理 WebDriver**，无需本地维护。
 
+### 命令行执行
+1. 拉取代码
+2. 修改配置文件中对应的参数：
+   [startup.properties](src%2Fmain%2Fresources%2Fdata%2F12306%2Fstartup.properties)
+   ![img.png](img/startup.png)
+3. 执行命令 `mvn test -Pweb-execution -Dsuite=local -Dtestng.dtd.http=true`
+
 ### 代码执行
 
 1. 拉取代码
@@ -30,9 +37,7 @@
 3. 执行测试用例
    [Ticket12306Test.java](src%2Ftest%2Fjava%2Fcom%2Fzach%2Ftest%2FTicket12306Test.java)
 
-### 命令行执行
 
-...
 
 ## 注意
 
